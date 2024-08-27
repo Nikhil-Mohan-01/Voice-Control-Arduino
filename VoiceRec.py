@@ -1,7 +1,7 @@
 import speech_recognition as sr
 import serial
 import time
-import keyboard 
+import keyboard  
 
 arduino = serial.Serial('COM7', 9600, timeout=1)  
 time.sleep(2)  
@@ -26,7 +26,7 @@ def get_voice_command():
 
 def send_command_to_arduino(command):
     if "blue led on" in command:
-        arduino.write(b'B1\n')  
+        arduino.write(b'B1\n') 
         print("Turning Blue LED On")
     elif "blue led off" in command:
         arduino.write(b'B0\n') 
@@ -42,14 +42,20 @@ def send_command_to_arduino(command):
 
 if __name__ == "__main__":
     while True:
+        if keyboard.is_pressed('q'):
+            print("Exiting...")
+            arduino.close()
+            break
+
         print("Hold the spacebar to give a command...")
-        keyboard.wait('space')
+        keyboard.wait('space') 
         
         command = get_voice_command()
         
         if command:
-            send_command_to_arduino(command)
-            if "exit" in command:
+            if  "exit" in command:
                 print("Exiting...")
-                arduino.close() 
+                arduino.close()
                 break
+            
+            send_command_to_arduino(command)

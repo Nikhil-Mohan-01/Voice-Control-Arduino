@@ -1,9 +1,12 @@
 const int blueLED = 31;  
-const int redLED = 35;  
+const int redLED = 35; 
+
+const int fan = 37;
 
 void setup() {
     pinMode(blueLED, OUTPUT);
     pinMode(redLED, OUTPUT);
+    pinMode(fan, OUTPUT);
     Serial.begin(9600); 
 }
 
