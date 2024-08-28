@@ -25,20 +25,8 @@ def get_voice_command():
         return None
 
 def send_command_to_arduino(command):
-    if "blue led on" in command:
-        arduino.write(b'B1\n') 
-        print("Turning Blue LED On")
-    elif "blue led off" in command:
-        arduino.write(b'B0\n') 
-        print("Turning Blue LED Off")
-    elif "red led on" in command:
-        arduino.write(b'R1\n') 
-        print("Turning Red LED On")
-    elif "red led off" in command:
-        arduino.write(b'R0\n') 
-        print("Turning Red LED Off")
-    else:
-        print("Command not recognized")
+    arduino.write((command + '\n').encode())  
+    print(f"Sent to Arduino: {command}")
 
 if __name__ == "__main__":
     while True:
