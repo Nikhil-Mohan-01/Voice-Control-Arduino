@@ -3,7 +3,7 @@ import serial
 import time
 import keyboard  
 
-arduino = serial.Serial('COM7', 9600, timeout=1)  
+arduino = serial.Serial('COM7', 9600, timeout=1)   ## Add your Communication port here
 time.sleep(2)  
 
 def get_voice_command():
